@@ -52,5 +52,8 @@ jobs:
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
-          path: report/
+          path: report
+      - name: Display structure of downloaded files
+        run: ls -R
+        working-directory: .
       - run: npm run merge:coverege
