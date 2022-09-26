@@ -55,5 +55,5 @@ jobs:
           path: report
       - name: Display structure of downloaded files
         run: ls -R
-        working-directory: .
+        working-directory: ./report
       - run: npm run merge:coverege
