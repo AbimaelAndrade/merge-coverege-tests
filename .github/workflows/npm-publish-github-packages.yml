@@ -11,13 +11,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci
+      - run: npm install
       - run: npm run test:e2e:user:cov
       - name: upload coverege-final.json
         uses: actions/upload-artifact@v3
         with:
           name: coverege-final-user
-          path: report/user-coverage/coverage-final.json
+          path: |
+           report/user-coverage
+           !report/user-coverage/lcov-report
+           !report/user-coverage/lcov.info
 
       
   product-test:
@@ -27,13 +30,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci
+      - run: npm install
       - run: npm run test:e2e:product:cov
       - name: upload coverege-final.json
         uses: actions/upload-artifact@v3
         with:
           name: coverege-final-product
-          path: report/product-coverage/coverage-final.json
+          path: |
+           report/product-coverage
+           !report/product-coverage/lcov-report
+           !report/product-coverage/lcov.info
 
   merge-coverege:
     needs: 
@@ -48,16 +54,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci
+      - run: npm install
       - name: Download a single artifact
         uses: actions/download-artifact@v3
         with:
           path: report
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: ./report
-      - run: pwd
-      - run: cd ..
-      - run: ls -l
-      - run: pwd  
+      - run: mv user-coverage report
+      - run: mv product-coverage report
       - run: npm run merge:coverege
