@@ -13,6 +13,12 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm run test:e2e:user:cov
+      - name: upload coverege-final.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverege-final-user
+          path: report/user-coverage/coverage-final.json
+
       
   product-test:
     runs-on: ubuntu-latest
@@ -23,6 +29,11 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm run test:e2e:product:cov
+      - name: upload coverege-final.json
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverege-final-product
+          path: report/product-coverage/coverage-final.json
 
   merge-coverege:
     needs: 
@@ -38,4 +49,8 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
+      - name: Download a single artifact
+        uses: actions/download-artifact@v3
+        with:
+          path: report/
       - run: npm run merge:coverege
