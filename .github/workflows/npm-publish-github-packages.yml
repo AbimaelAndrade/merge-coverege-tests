@@ -56,4 +56,8 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R
         working-directory: ./report
+      - run: pwd
+      - run: cd ..
+      - run: ls -l
+      - run: pwd  
       - run: npm run merge:coverege
