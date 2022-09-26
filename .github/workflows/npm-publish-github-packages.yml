@@ -59,6 +59,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: report
-      - run: mv user-coverage report
-      - run: mv product-coverage report
+      - run: ls -l
+      - run: pwd
       - run: npm run merge:coverege
