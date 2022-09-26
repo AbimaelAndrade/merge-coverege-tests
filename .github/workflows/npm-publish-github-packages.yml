@@ -16,7 +16,7 @@ jobs:
       - name: upload coverege-final.json
         uses: actions/upload-artifact@v3
         with:
-          name: coverege-final-user
+          name: user-coverage
           path: |
            report/user-coverage
            !report/user-coverage/lcov-report
@@ -35,7 +35,7 @@ jobs:
       - name: upload coverege-final.json
         uses: actions/upload-artifact@v3
         with:
-          name: coverege-final-product
+          name: product-coverage
           path: |
            report/product-coverage
            !report/product-coverage/lcov-report
@@ -59,6 +59,5 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           path: report
-      - run: ls -lR
-      - run: pwd
       - run: npm run merge:coverege
+      - run: ls report
