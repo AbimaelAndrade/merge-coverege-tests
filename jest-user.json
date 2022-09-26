@@ -1,0 +1,14 @@
+{
+  "globals": {
+    "ts-jest": {
+      "isolatedModules": true
+    }
+  },
+  "testEnvironment": "node",
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "testMatch": ["<rootDir>/test/**/*.e2e-spec.{ts,js}"],
+  "collectCoverageFrom": ["<rootDir>/src/user/**/*.(t|j)s", "!**/*spec.(t|j)s"],
+  "coverageDirectory": "<rootDir>/report/user-coverage",
+  "coverageReporters": ["json", "lcov"],
+  "preset": "ts-jest"
+}
